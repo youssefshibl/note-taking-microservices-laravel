@@ -39,7 +39,6 @@ class UserAuthenticationTest extends TestCase
         $endpoint = $this->apiUrl . '/register';
         // Register the user
         $response = $this->post($endpoint, $this->user);
-        print_r($response->getContent());
 
 
         // Check the response
