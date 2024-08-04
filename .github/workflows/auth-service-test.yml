@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       mysql:
-        image: mysql:5.7
+        image: mysql:8
         env:
           MYSQL_ROOT_PASSWORD: root
           MYSQL_DATABASE: auth-service_db
@@ -32,6 +32,7 @@ jobs:
         cp .env.example .env
         composer install --ignore-platform-reqs
         php artisan key:generate
+        cat .env
         php artisan migrate
 
     - name: Run tests
