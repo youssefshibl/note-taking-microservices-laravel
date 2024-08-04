@@ -8,8 +8,8 @@ on:
 
 jobs:
   test-auth-service:
-    if: github.event.head_commit.message == 'auth-service' || contains(github.event.pull_request.head.ref, 'auth-service')
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.head.ref, 'auth-service') || github.event.pull_request.changed_files == 0 || github.event.pull_request.changed_files contains 'auth-service/'
 
     services:
       mysql:
@@ -49,8 +49,8 @@ jobs:
       run: cd auth-service && php artisan test
 
   test-note-taking-service:
-    if: github.event.head_commit.message == 'note-taking-service' || contains(github.event.pull_request.head.ref, 'note-taking-service')
     runs-on: ubuntu-latest
+    if: contains(github.event.pull_request.head.ref, 'note-taking-service') || github.event.pull_request.changed_files == 0 || github.event.pull_request.changed_files contains 'note-taking-service/'
 
     services:
       mysql:
