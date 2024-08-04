@@ -25,14 +25,13 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: 8.2
-
+        
     - name: Install dependencies
       run: |
         cd auth-service
-        cp .env.example .env
+        cp .env.testing .env
         composer install --ignore-platform-reqs
         php artisan key:generate
-        cat .env
         php artisan migrate
 
     - name: Run tests
