@@ -1,0 +1,52 @@
+name: Test Microservices
+
+on:
+  pull_request:
+    paths:
+      - 'auth-service/**'
+jobs:
+  test-auth-service:
+    runs-on: ubuntu-latest
+    services:
+      mysql:
+        image: mysql:8
+        env:
+          MYSQL_ROOT_PASSWORD: root
+          MYSQL_DATABASE: auth-service_db
+        ports:
+          - 3306:3306
+        options: --health-cmd="mysqladmin ping --silent" --health-interval=10s --health-timeout=5s --health-retries=3
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: 8.2
+        
+    - name: Install dependencies
+      run: |
+        cd auth-service
+        cp .env.testing .env
+        composer install --ignore-platform-reqs
+        php artisan key:generate
+        php artisan jwt:secret --env=testing
+        cat .env
+        php artisan migrate
+
+    - name: Run tests
+      env:
+        DB_CONNECTION: mysql
+        DB_HOST: 127.0.0.1
+        DB_PORT: 3306
+        DB_DATABASE: auth-service_db
+        DB_USERNAME: root
+        DB_PASSWORD: root
+      run: |
+        cd auth-service 
+        php artisan config:clear
+        php artisan cache:clear
+        php artisan optimize:clear
+        php artisan test

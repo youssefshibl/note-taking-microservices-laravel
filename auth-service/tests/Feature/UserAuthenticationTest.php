@@ -40,6 +40,7 @@ class UserAuthenticationTest extends TestCase
         // Register the user
         $response = $this->post($endpoint, $this->user);
 
+
         // Check the response
         $response->assertStatus(200);
         // Check the response structure
