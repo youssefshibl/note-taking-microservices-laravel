@@ -33,6 +33,7 @@ jobs:
         composer install --ignore-platform-reqs
         php artisan key:generate
         php artisan jwt:secret
+        cat .env
         php artisan migrate
 
     - name: Run tests
