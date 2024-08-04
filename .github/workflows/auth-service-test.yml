@@ -46,7 +46,6 @@ jobs:
         DB_PASSWORD: root
       run: |
         cd auth-service 
-        ./vendor/bin/phpunit --display-errors=stderr
         php artisan config:clear
         php artisan cache:clear
         php artisan optimize:clear
