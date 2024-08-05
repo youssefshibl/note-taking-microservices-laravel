@@ -12,6 +12,9 @@ done
 
 # Run Laravel migrations
 php artisan migrate --force
+cp .env.example .env
+php artisan key:generate
 
 # Start PHP-FPM
-php-fpm
+# php-fpm
+php artisan serve
