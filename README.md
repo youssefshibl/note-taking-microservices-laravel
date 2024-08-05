@@ -24,6 +24,24 @@ This is a simple note taking application that is built using microservices archi
     - `rabbitmq` : RabbitMQ service as a message broker
 
 ---
+# 🔦 [Postman API Documentation](https://documenter.getpostman.com/view/20246655/2sA3rxqDNp)
+
++ path: ApiGetway + Microservice + Route
+
+#### Auth Service
+- Create User : APIGetway + '/auth/api/register' [POST]
+- Login User : APIGetway + '/auth/api/login' [POST]
+- Check Authenticated User : APIGetway + '/auth/api/check' [GET]
+- Delete User : APIGetway + '/auth/api/delete' [DELETE]
+
+#### Notes Service
+- Create Note : APIGetway + '/note/api/note' [POST]
+- Get All Notes : APIGetway + '/note/api/note' [GET]
+- Get Single Note : APIGetway + '/note/api/note/{id}' [GET]
+- Update Note : APIGetway + '/note/api/note/{id}' [PUT]
+- Delete Note : APIGetway + '/note/api/note/{id}' [DELETE]
+
+
 ####  📝 Features
 - User registration , login and authentication using JWT
 - Create, Read, Update and Delete notes
@@ -77,3 +95,30 @@ How to run the tests
 ### 🔬 Testing Pipeline using Github Action
 
 i make a Github Action workflow to run the tests of the `auth-service` and the `notes-service` every time we pull request to the main branch , i make separate testing pipline workflow for the `auth-service` and the `notes-service` to run the tests of the `auth-service` and the `notes-service` separately based on the changes that we made in the code of the `auth-service` or the `notes-service` so we can know which service has the issue in the code and we can fix it easily
+
+![Screenshot from 2024-08-05 23-51-54](https://github.com/user-attachments/assets/9286b828-4b2a-43ab-ba17-c2c56fcdaf24)
+![Screenshot from 2024-08-05 23-53-12](https://github.com/user-attachments/assets/2b9bec6e-6231-4869-9c97-05a46ceec71c)
+![Screenshot from 2024-08-05 23-59-22](https://github.com/user-attachments/assets/7976738f-757f-493a-8489-5e175fcd67cf)
+![Screenshot from 2024-08-05 23-59-49](https://github.com/user-attachments/assets/c9891e24-e02f-45b4-9708-0d28e0b39925)
+
+
+
+### 💉 Future Plans
+
+- Add more features to the application like sharing notes between users
+- Add end to end testing to the application whcih test the application as a whole in every new release
+- Add more microservices to the application like `files-service` to manage files and `notifications-service` to manage notifications
+- Scale the application by adding more instances of the services and use a load balancer to distribute the requests between the instances
+- Use Kubernetes to manage the application and scale the application and make it more reliable and secure
+- Use Redis as a cache to cache the requests and make the application faster
+
+
+
+
+### 🛠️ Technologies
+- Laravel
+- MySQL
+- RabbitMQ
+- Nginx
+- Docker
+- Github Actions
