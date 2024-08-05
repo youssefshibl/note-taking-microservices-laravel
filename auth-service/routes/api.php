@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Jobs\DeleteUserJob;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use Junges\Kafka\Facades\Kafka;
@@ -29,18 +30,18 @@ Route::post('/login', [AuthController::class, 'login']);
 
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/check', [AuthController::class, 'check']);
-    Route::delete('/delete', [AuthController::class, 'delete']);
+   Route::get('/check', [AuthController::class, 'check']);
+   Route::delete('/delete', [AuthController::class, 'delete']);
 });
 
 
-Route::get('/test', function () {
+// Route::get('/test', function () {
 
-// return response()->json(['message' => 'Hello, JOO!'], 200);
-     try{
-        Kafka::publish('broker')->onTopic('testone');
-        return response()->json(['message' => 'Message sent!'], 200);
-     }catch(\Exception $e){
-        return response()->json(['message' => $e->getMessage()], 500);
-     }
-});
+//    try {
+//       $message = 'Hello, RabbitMQ!';
+//       DeleteUserJob::dispatch($message);
+//       return response()->json(['message' => 'Message sent!'], 200);
+//    } catch (\Exception $e) {
+//       return response()->json(['message' => $e->getMessage()], 500);
+//    }
+// });

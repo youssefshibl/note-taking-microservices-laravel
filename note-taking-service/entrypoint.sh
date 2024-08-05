@@ -15,6 +15,9 @@ php artisan migrate --force
 cp .env.example .env
 php artisan key:generate
 
+
 # Start PHP-FPM
 # php-fpm
 php artisan serve --host=0.0.0.0 --port=8000
+
+

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\LoginUserRequest;
 use App\Http\Requests\RegisterUserRequest;
+use App\Jobs\DeleteUserJob;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -74,7 +75,13 @@ class AuthController extends Controller
     {
         try {
             $user = auth('api')->user();
+            $user_info = [
+                'id' => $user->id,
+                'name' => $user->name,
+                'email' => $user->email
+            ];
             $user->delete();
+            DeleteUserJob::dispatch($user_info);
             return response()->json(['message' => 'User deleted']);
         } catch (\Exception $e) {
             return response()->json([
