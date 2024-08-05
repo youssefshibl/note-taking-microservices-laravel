@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Junges\Kafka\Facades\Kafka;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,19 +21,26 @@ use Illuminate\Support\Facades\Route;
 // });
 
 
-Route::prefix('auth')->group(function () {
 
-Route::post('/register', [AuthController::class , 'register']);
-Route::post('/login', [AuthController::class , 'login']);
+
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
 
 
 
 Route::middleware(['auth:api'])->group(function () {
-    Route::get('/check', [AuthController::class , 'check']);
-    Route::delete('/delete', [AuthController::class , 'delete']);
+    Route::get('/check', [AuthController::class, 'check']);
+    Route::delete('/delete', [AuthController::class, 'delete']);
 });
 
+
+Route::get('/test', function () {
+
+// return response()->json(['message' => 'Hello, JOO!'], 200);
+     try{
+        Kafka::publish('broker')->onTopic('testone');
+        return response()->json(['message' => 'Message sent!'], 200);
+     }catch(\Exception $e){
+        return response()->json(['message' => $e->getMessage()], 500);
+     }
 });
-
-
-

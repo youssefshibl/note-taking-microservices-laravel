@@ -14,7 +14,6 @@ done
 php artisan migrate --force
 cp .env.example .env
 php artisan key:generate
-php artisan jwt:secret
 
 # Start PHP-FPM
 # php-fpm
