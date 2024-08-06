@@ -91,6 +91,7 @@ How to run the tests
 
 How to run the tests
 - Go to the `notes-service` directory
+- Run `php artisan test`
 
 ### 🔬 Testing Pipeline using Github Action
 
