@@ -20,7 +20,7 @@ while ! check_rabbitmq; do
     sleep 5  # Wait for 5 seconds before checking again
 done
 
-sleep 10
+sleep 5
 
 apt install -y python3 wget
 wget http://rabbitmq:15672/cli/rabbitmqadmin
@@ -30,5 +30,6 @@ chmod +x rabbitmqadmin
 
 echo "RabbitMQ is up and running!"
 
+sleep 10
 # Run the Laravel queue worker
 php /var/www/html/artisan queue:work --tries=3
