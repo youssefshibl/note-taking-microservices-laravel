@@ -1,8 +1,0 @@
-{
-    "queues": [
-        {
-            "name": "default",
-            "durable": true
-        }
-    ]
-}
