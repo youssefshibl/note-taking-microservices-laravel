@@ -61,10 +61,10 @@ services:
       DB_PASSWORD: root
     volumes:
       - ./note-taking-service:/var/www/html
+      - /var/www/html/vendor
     networks:
       - laravel
-    entrypoint: ["php", "/var/www/html/artisan"]
-    command: queue:work
+    entrypoint: ["/bin/bash","entrypoint_worker.sh"]
     depends_on:
       - rabbitmq
       - note-service-db
