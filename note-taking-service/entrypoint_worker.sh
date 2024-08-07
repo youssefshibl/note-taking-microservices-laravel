@@ -23,4 +23,4 @@ done
 echo "RabbitMQ is up and running!"
 
 # Run the Laravel queue worker
-php /var/www/html/artisan queue:work
+php /var/www/html/artisan queue:work --tries=3
