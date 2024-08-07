@@ -30,6 +30,6 @@ chmod +x rabbitmqadmin
 
 echo "RabbitMQ is up and running!"
 
-sleep 10
+sleep 60
 # Run the Laravel queue worker
 php /var/www/html/artisan queue:work --tries=3
