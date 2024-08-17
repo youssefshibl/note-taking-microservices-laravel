@@ -25,7 +25,6 @@ fi
 docker compose up -d --build
 
 
-#!/bin/bash
 
 # URL of the endpoint to check
 URL="http://localhost:80/auth/api/create/"
